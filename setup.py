@@ -11,6 +11,9 @@ def get_requirements(filename:str) -> List[str]:
         
         if HYPHEN in requirements:
             requirements.remove(HYPHEN)
+            
+    return requirements
+            
 setup(
     name= 'bspline_project',
     version= '0.0.1',
