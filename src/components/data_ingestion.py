@@ -1,11 +1,19 @@
 import os
 import sys
-from src.exception import CustomException
-from src.logger import logging
-import pandas as pd
+sys.path.append('/home/abhishek/datascience/end-to-end/BSplineRegression_Model/src/')
 
+from exception import CustomException
+
+from exception import CustomException
+from logger import logging
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+
+
+
+from components.data_transformation import DataTransformer
+from components.data_transformation import DataTransformerConfig
 
 @dataclass
 class DataIngestionConfig:
@@ -44,4 +52,7 @@ class DataIngestion:
             
 if __name__ == "__main__":
     data_ingestion = DataIngestion()
-    data_ingestion.initiate_data_ingestion()
+    train_data,test_data = data_ingestion.initiate_data_ingestion()
+    
+    data_transformer = DataTransformer()
+    data_transformer.initiate_data_transformer(train_data,test_data)

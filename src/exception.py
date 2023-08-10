@@ -1,5 +1,5 @@
 import sys
-from src.logger import logging
+from logger import logging
 
 # error_message_detail function will return the error message with the line number and the python script name
 def error_message_detail(error, error_detail:sys):
