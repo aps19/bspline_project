@@ -14,6 +14,8 @@ from dataclasses import dataclass
 
 from components.data_transformation import DataTransformer
 from components.data_transformation import DataTransformerConfig
+from components.model_training import ModelTrainerConfig, ModelTrainer
+
 
 @dataclass
 class DataIngestionConfig:
@@ -55,4 +57,11 @@ if __name__ == "__main__":
     train_data,test_data = data_ingestion.initiate_data_ingestion()
     
     data_transformer = DataTransformer()
-    data_transformer.initiate_data_transformer(train_data,test_data)
+    train_arr,test_arr,_ = data_transformer.initiate_data_transformer(train_data,test_data)
+    
+    model_trainer = ModelTrainer()
+    print(model_trainer.initiate_model_trainer(train_arr,test_arr))
+    
+    
+    
+    
