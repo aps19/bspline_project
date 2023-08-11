@@ -31,7 +31,7 @@ class DataIngestion:
         logging.info("Data Ingestion Started")
         
         try:
-            df = pd.read_csv('notebook/B-Spline-Regression-main/HousingData.csv')
+            df = pd.read_csv('notebook/HousingData.csv')
             logging.info("Read the dataset as pandas dataframe")
             
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
