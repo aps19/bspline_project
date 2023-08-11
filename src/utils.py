@@ -18,30 +18,13 @@ def save_object(filepath,obj):
     except Exception as e:
         raise CustomException(e,sys)
 
-# def evaluate_model(models:dict,X_train:np.ndarray,y_train:np.ndarray,X_test:np.ndarray,y_test:np.ndarray,params:dict):
-#     try:
-#         model_report = {}
-#         for model_name, model in models.items():
-#             logging.info(f'Fitting {model_name}')
-#             param_grid = params.get(model_name, {})  # Get parameters for grid search
-#             grid_search = GridSearchCV(estimator=model, param_grid=param_grid, scoring='neg_mean_squared_error', cv=5)
-#             grid_search.fit(X_train, y_train)
-#             best_model = grid_search.best_estimator_
-            
-#             logging.info(f'Predicting {model_name}')
-#             y_pred = best_model.predict(X_test)
-            
-#             logging.info(f'Evaluating {model_name}')
-#             model_report[model_name] = {
-#                 'r2': r2_score(y_test, y_pred),
-#                 'mse': mean_squared_error(y_test, y_pred),
-#                 'mae': mean_absolute_error(y_test, y_pred),
-#                 'best_params': grid_search.best_params_
-#             }
-#         return model_report
-    
-#     except Exception as e:
-#         raise CustomException(e,sys)
+def load_object(filepath):
+    try:
+        with open(filepath, 'rb') as file:
+            obj = dill.load(file)
+        return obj
+    except Exception as e:
+        raise CustomException(e,sys)
 
 
 def evaluate_model(models: dict, X_train: np.ndarray, y_train: np.ndarray, X_test: np.ndarray, y_test: np.ndarray, params: dict):
@@ -57,6 +40,8 @@ def evaluate_model(models: dict, X_train: np.ndarray, y_train: np.ndarray, X_tes
 
             model.set_params(**gs.best_params_)
             model.fit(X_train,y_train)
+                        
+            logging.info(f'Predicting {list(models.keys())[i]}')
 
             #model.fit(X_train, y_train)  # Train model
 

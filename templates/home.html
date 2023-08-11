@@ -1,0 +1,67 @@
+<html>
+<body>
+    <div class="login">
+       <h1>Housing Price Indicator</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Boston House Price Prediction</legend>
+        </h1>
+        <div class="mb-3">
+            <label class="form-label">Crime Rate</label>
+            <input type="number" class="form-control" name="crime_rate" placeholder="Enter the crime rate in area" required>
+        </input>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Residential Land Zone</label>
+            <input type="number" class="form-control" name="residential_land_zone" placeholder="proportion of land zoned for lots over 25,000 sq.ft." required>
+            </input>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">If tract bound ?</label>
+            <input type="number" class="form-control" name="tract_bounds"
+                placeholder="1 if tract bounds river;0 otherwise" required>
+        </input>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Number of Rooms</label>
+            <input type="number" class="form-control" name="num_of_rooms" placeholder="Number of Rooms" required>
+        </input>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Age of Building</label>
+            <input type="number" class="form-control" name="age_of_building" placeholder="Age of Property"
+                required>
+        </input>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Radial Highways Accesibility Index</label>
+            <input type="number" class="form-control" name="radial_highways_accessibility"
+                placeholder="index of accesibility" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tax Rate</label>
+            <input class="form-control" type="number" name="tax_rate"
+                placeholder="property-tax per $10,000" min='0' max='1000' />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Pupil to Teacher Ratio</label>
+            <input class="form-control" type="number" name="pupil_teacher_ratio"
+                placeholder="average 18-19" min='0' max='100' />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Percentage of low status population</label>
+            <input class="form-control" type="number" name="lower_status_population"
+                placeholder="property-tax per $10,000" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict the Price of Your New House" required />
+        </div>
+    </form>
+    <h2>
+       The average price of your property is USD {{results}} Thousand. 
+    </h2>
+   <body>
+</html>
